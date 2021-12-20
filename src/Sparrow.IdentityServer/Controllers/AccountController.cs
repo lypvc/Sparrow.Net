@@ -1,4 +1,6 @@
-﻿using IdentityModel;
+﻿//using IdentityModel;
+using IdentityModel;
+//using IdentityServer3.Core.ViewModels;
 using IdentityServer4;
 using IdentityServer4.Events;
 using IdentityServer4.Extensions;
@@ -11,6 +13,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Sparrow.IdentityServer.Core.Models;
 using Sparrow.IdentityServer.Models;
+using Sparrow.IdentityServer.Models.Account;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -204,6 +207,11 @@ namespace Sparrow.IdentityServer.Controllers
             return View(model);
         }
 
+        private IActionResult LocalRedirect(object returnUrl)
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// 登出
         /// </summary>
@@ -215,8 +223,8 @@ namespace Sparrow.IdentityServer.Controllers
         {
             var vm = await BuildLogoutViewModelAsync(logoutId);
 
-            if (vm.ShowLogoutPrompt == false)
-                return await Logout(vm);
+            //if (vm.ShowLogoutPrompt == false)
+            //    return await Logout(vm);
 
             return View(vm);
         }
@@ -230,24 +238,30 @@ namespace Sparrow.IdentityServer.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout(LogoutFormModel model)
         {
-            var vm = await BuildLoggedOutViewModelAsync(model.LogoutId);
+            //var vm = await BuildLoggedOutViewModelAsync(model.LogoutId);
 
-            if (User.Identity.IsAuthenticated == true)
-            {
-                await _signInManager.SignOutAsync();
-                await _events.RaiseAsync(new UserLogoutSuccessEvent(User.GetSubjectId(), User.GetDisplayName()));
-            }
+            //if (User.Identity.IsAuthenticated == true)
+            //{
+            //    await _signInManager.SignOutAsync();
+            //    await _events.RaiseAsync(new UserLogoutSuccessEvent(User.GetSubjectId(), User.GetDisplayName()));
+            //}
 
-            if (vm.TriggerExternalSignout)
-            {
-                var url = Url.Action("Logout", new { vm.LogoutId });
-                return SignOut(new AuthenticationProperties
-                {
-                    RedirectUri = url
-                }, vm.ExternalAuthenticationSchema);
-            }
+            //if (vm.TriggerExternalSignout)
+            //{
+            //    var url = Url.Action("Logout", new { vm.LogoutId });
+            //    return SignOut(new AuthenticationProperties
+            //    {
+            //        RedirectUri = url
+            //    }, vm.ExternalAuthenticationSchema);
+            //}
 
-            return View("LoggedOut", vm);
+            return View("LoggedOut", null);
+            //return View("LoggedOut", vm);
+        }
+
+        private Task BuildLoggedOutViewModelAsync(object logoutId)
+        {
+            throw new NotImplementedException();
         }
 
         #region privates

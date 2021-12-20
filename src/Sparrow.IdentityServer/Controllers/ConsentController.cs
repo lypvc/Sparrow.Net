@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Sparrow.IdentityServer.Models;
+using Sparrow.IdentityServer.Models.Account;
 using Sparrow.IdentityServer.Models.Consent;
 using System.Linq;
 using System.Threading.Tasks;

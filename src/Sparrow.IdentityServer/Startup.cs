@@ -61,7 +61,7 @@ namespace Sparrow.IdentityServer
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                //app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
 
@@ -75,9 +75,9 @@ namespace Sparrow.IdentityServer
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                //routes.MapRoute(
+                //    name: "default",
+                //    template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
